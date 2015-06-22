@@ -5,7 +5,7 @@ var async = require('async');
 var exerciseUtils = require('./utils');
 
 var readFile = exerciseUtils.readFile;
-var promisifiedReadFile = exerciseUtils.promisifedReadFile;
+var promisifiedReadFile = exerciseUtils.promisifiedReadFile;
 
 var green = exerciseUtils.green;
 var red = exerciseUtils.red;
