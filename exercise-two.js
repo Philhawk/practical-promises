@@ -123,4 +123,4 @@ async.eachSeries(filenames,
  */
 
 var fs = require('fs');
-function promisifiedWriteFile (filename) {}
+function promisifiedWriteFile (filename, str) {}
