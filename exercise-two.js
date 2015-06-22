@@ -17,19 +17,19 @@ var red = exerciseUtils.red;
  *
  */
 
-// // callback version
-// async.each(['poem-two/stanza-01.txt', 'poem-two/stanza-02.txt'],
-// 	function (filename, eachDone) {
-// 		readFile(filename, function (err, stanza) {
-// 			console.log('-- A. callback version --');
-// 			green(stanza);
-// 			eachDone();
-// 		});
-// 	},
-// 	function (err) {
-// 		console.log('-- A. callback version done --');
-// 	}
-// );
+// callback version
+async.each(['poem-two/stanza-01.txt', 'poem-two/stanza-02.txt'],
+	function (filename, eachDone) {
+		readFile(filename, function (err, stanza) {
+			console.log('-- A. callback version --');
+			green(stanza);
+			eachDone();
+		});
+	},
+	function (err) {
+		console.log('-- A. callback version done --');
+	}
+);
 
 // promise version
 // ???
