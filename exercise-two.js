@@ -101,6 +101,7 @@ async.eachSeries(filenames,
  *
  */
 
+// COMMENT OUT THIS CODE FOR ALL EXERCISES ABOVE
 var randIdx = Math.floor(Math.random() * filenames.length);
 filenames[randIdx] = 'wrong-file-name-' + randIdx + '.txt';
 
