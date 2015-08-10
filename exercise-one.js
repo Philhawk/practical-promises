@@ -11,7 +11,7 @@ var red = exerciseUtils.red;
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * A. log poem one stanza one
+ * A. log poem one stanza one (ignore errors)
  *
  */
 
@@ -28,6 +28,7 @@ readFile('poem-one/stanza-01.txt', function (err, stanza) {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
  * B. log poem one stanza two and three, in any order
+ *    (ignore errors)
  *
  */
 
@@ -47,8 +48,9 @@ readFile('poem-one/stanza-03.txt', function (err, stanza3) {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * C. log poem one stanza two and *then* stanza three
+ * C. read & log poem one stanza two and *then* read & log stanza three
  *    log 'done' when both are done
+ *    (ignore errors)
  *
  */
 
@@ -63,7 +65,7 @@ readFile('poem-one/stanza-02.txt', function (err, stanza2) {
 	});
 });
 
-// promise version
+// promise version (hint: don't need to nest `then` calls)
 // ???
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -85,7 +87,7 @@ readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * E. log poem one stanza three and *then* stanza four
+ * E. read & log poem one stanza three and *then* read & log stanza four
  *    or log an error if it occurs for either file read
  *
  */
@@ -95,9 +97,9 @@ readFile('poem-one/stanza-03.txt', function (err, stanza3) {
 	console.log('-- E. callback version (stanza three) --');
 	if (err) return red(err);
 	green(stanza3);
-	readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
+	readFile('poem-one/wrong-file-name.txt', function (err2, stanza4) {
 		console.log('-- E. callback version (stanza four) --');
-		if (err) return red(err);
+		if (err2) return red(err2);
 		green(stanza4);
 	});
 });
@@ -108,7 +110,7 @@ readFile('poem-one/stanza-03.txt', function (err, stanza3) {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * F. log poem one stanza three and *then* stanza four
+ * F. read & log poem one stanza three and *then* read & log stanza four
  *    or log an error if it occurs for either file read
  *    always log 'done' when everything is done
  *
@@ -123,9 +125,9 @@ readFile('poem-one/stanza-03.txt', function (err, stanza3) {
 		return;
 	}
 	green(stanza3);
-	readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
+	readFile('poem-one/wrong-file-name.txt', function (err2, stanza4) {
 		console.log('-- F. callback version (stanza four) --');
-		if (err) red(err);
+		if (err2) red(err2);
 		else green(stanza4);
 		console.log('-- F. callback version done --');
 	});

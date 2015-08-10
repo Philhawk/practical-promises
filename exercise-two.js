@@ -14,6 +14,8 @@ var red = exerciseUtils.red;
  *
  * A. log poem two stanza one and stanza two, in any order
  *    but log 'done' when both are done
+ *    (ignore errors)
+ *    note: reads are occurring in parallel (simultaneously)
  *
  */
 
@@ -38,6 +40,8 @@ async.each(['poem-two/stanza-01.txt', 'poem-two/stanza-02.txt'],
  *
  * B. log all the stanzas in poem two, in any order
  *    and log 'done' when they're all done
+ *    (ignore errors)
+ *    note: reads are occurring in parallel (simultaneously)
  *
  */
 
@@ -64,8 +68,10 @@ async.each(filenames,
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *
- * C. log all the stanzas in poem two, *in order*
+ * C. read & log all the stanzas in poem two, *in order*
  *    and log 'done' when they're all done
+ *    (ignore errors)
+ *    note: reads are occurring in series (only when previous finishes)
  *
  */
 
@@ -91,11 +97,12 @@ async.eachSeries(filenames,
  * D. log all the stanzas in poem two, *in order*
  *    making sure to fail for any error and log it out
  *    and log 'done' when they're all done
+ *    note: reads are occurring in series (only when previous finishes)
  *
  */
 
 var randIdx = Math.floor(Math.random() * filenames.length);
-filenames[randIdx] = 'wrong-file-name.txt';
+filenames[randIdx] = 'wrong-file-name-' + randIdx + '.txt';
 
 // callback version
 async.eachSeries(filenames,
