@@ -133,7 +133,7 @@ function problemD () {
     return 'poem-two/' + 'stanza-0' + n + '.txt';
   });
   var randIdx = Math.floor(Math.random() * filenames.length);
-  filenames[randIdx] = 'wrong-file-name-' + randIdx + '.txt';
+  filenames[randIdx] = 'wrong-file-name-' + (randIdx + 1) + '.txt';
 
   // callback version
   async.eachSeries(filenames,
