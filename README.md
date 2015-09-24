@@ -1,6 +1,6 @@
 # Practical Promises
 
-In this workshop, we'll be covering how use promises for asynchronous control flow by using them to log out poem stanzas.
+In this workshop, we'll be covering how to use promises for asynchronous control flow by using them to log out poem stanzas.
 
 Follow the exercises in `exercise-one.js` and `exercise-two.js`. Each exercise includes a description of its objective as well as an example of a solution using vanilla async callbacks. For each exercise, come up with an equivalent solution using promises.
 
