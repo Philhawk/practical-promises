@@ -21,7 +21,8 @@ module.exports = {
 
 // runs every problem given as command-line argument to process
 args.forEach(function(arg){
-  module.exports['problem' + arg]();
+  var problem = module.exports['problem' + arg];
+  if (problem) problem();
 });
 
 function problemA () {
