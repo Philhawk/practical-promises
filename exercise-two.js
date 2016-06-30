@@ -6,8 +6,8 @@ var Promise = require('bluebird'),
 
 var readFile = exerciseUtils.readFile,
     promisifiedReadFile = exerciseUtils.promisifiedReadFile,
-    green = exerciseUtils.green,
-    red = exerciseUtils.red;
+    blue = exerciseUtils.blue,
+    magenta = exerciseUtils.magenta;
 
 var args = process.argv.slice(2).map(function(st){ return st.toUpperCase(); });
 
@@ -40,7 +40,7 @@ function problemA () {
     function (filename, eachDone) {
       readFile(filename, function (err, stanza) {
         console.log('-- A. callback version --');
-        green(stanza);
+        blue(stanza);
         eachDone();
       });
     },
@@ -73,7 +73,7 @@ function problemB () {
     function (filename, eachDone) {
       readFile(filename, function (err, stanza) {
         console.log('-- B. callback version --');
-        green(stanza);
+        blue(stanza);
         eachDone();
       });
     },
@@ -106,7 +106,7 @@ function problemC () {
     function (filename, eachDone) {
       readFile(filename, function (err, stanza) {
         console.log('-- C. callback version --');
-        green(stanza);
+        blue(stanza);
         eachDone();
       });
     },
@@ -142,12 +142,12 @@ function problemD () {
       readFile(filename, function (err, stanza) {
         console.log('-- D. callback version --');
         if (err) return eachDone(err);
-        green(stanza);
+        blue(stanza);
         eachDone();
       });
     },
     function (err) {
-      if (err) red(err);
+      if (err) magenta(err);
       console.log('-- D. callback version done --');
     }
   );

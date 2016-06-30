@@ -25,12 +25,12 @@ utils.promisifiedReadFile = function (filename) {
 	});
 };
 
-utils.green = function (text) {
-	console.log(chalk.green(text));
+utils.blue = function (text) {
+	console.log(chalk.blue(text));
 };
 
-utils.red = function (text) {
-	console.error(chalk.red(text));
+utils.magenta = function (text) {
+	console.error(chalk.magenta(text));
 };
 
 module.exports = utils;

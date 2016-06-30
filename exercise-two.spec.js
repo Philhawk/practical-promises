@@ -6,8 +6,8 @@ var expect = chai.expect;
 chai.use(require('chai-spies'));
 
 var utils = require('./utils');
-var green = chai.spy.on(utils, 'green');
-var red = chai.spy.on(utils, 'red');
+var blue = chai.spy.on(utils, 'blue');
+var magenta = chai.spy.on(utils, 'magenta');
 
 var fs = require('fs');
 var exercise = require('./exercise-two');
@@ -23,14 +23,14 @@ var stanzas = fs.readdirSync(dirpath)
 describe('exercise two (involving poem two)', function () {
 
 	beforeEach(function () {
-		green.reset();
-		red.reset();
+		blue.reset();
+		magenta.reset();
 	});
 
 	var greenCalls, redCalls;
 	beforeEach(function () {
-		greenCalls = green.__spy.calls;
-		redCalls = red.__spy.calls;
+		greenCalls = blue.__spy.calls;
+		redCalls = magenta.__spy.calls;
 	});
 
 	var originalLog = console.log;
@@ -39,8 +39,8 @@ describe('exercise two (involving poem two)', function () {
 			var args = [].slice.call(arguments);
 			console.log.calls.push({
 				args: args,
-				priorNumGreenCalls: green.__spy.calls.length,
-				priorNumRedCalls: red.__spy.calls.length
+				priorNumGreenCalls: blue.__spy.calls.length,
+				priorNumRedCalls: magenta.__spy.calls.length
 			});
 			return originalLog.apply(console, arguments);
 		}
@@ -60,8 +60,8 @@ describe('exercise two (involving poem two)', function () {
 		xit('ignoring errors, logs the first and second stanza in any order, and a done message when both are complete', function (done) {
 			exercise.problemA();
 			setTimeout(function () {
-				expect(green).to.have.been.called.with(stanzas[0]);
-				expect(green).to.have.been.called.with(stanzas[1]);
+				expect(blue).to.have.been.called.with(stanzas[0]);
+				expect(blue).to.have.been.called.with(stanzas[1]);
 				var loggedDoneCalls = getLoggedDoneCalls();
 				expect(loggedDoneCalls).to.have.length(1);
 				var loggedDoneCall = loggedDoneCalls[0];
@@ -79,7 +79,7 @@ describe('exercise two (involving poem two)', function () {
 			exercise.problemB();
 			setTimeout(function () {
 				stanzas.forEach(function (stanza) {
-					expect(green).to.have.been.called.with(stanza);
+					expect(blue).to.have.been.called.with(stanza);
 				});
 				var loggedDoneCalls = getLoggedDoneCalls();
 				expect(loggedDoneCalls).to.have.length(1);
