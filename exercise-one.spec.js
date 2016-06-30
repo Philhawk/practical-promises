@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var chai = require('chai');
 var expect = chai.expect;
 chai.use(require('chai-spies'));
@@ -10,13 +11,13 @@ var red = chai.spy.on(utils, 'red');
 
 var fs = require('fs');
 var exercise = require('./exercise-one');
-var dirpath = __dirname + '/poem-one/';
+var dirpath = path.join(__dirname, 'poem-one');
 var stanzas = fs.readdirSync(dirpath)
 .filter(function (filename) {
 	return filename[0] !== '.'
 })
 .map(function (filename) {
-	return fs.readFileSync(dirpath + filename).toString();
+	return fs.readFileSync(path.join(dirpath, filename)).toString();
 });
 
 function exactlyOneIsTrue (boolA, boolB) {
@@ -47,7 +48,7 @@ describe('exercise one (involving poem one)', function () {
 	});
 
 	describe('problemA', function () {
-		
+
 		xit('logs the first stanza', function (done) {
 			exercise.problemA();
 			setTimeout(function () {
@@ -59,7 +60,7 @@ describe('exercise one (involving poem one)', function () {
 	});
 
 	describe('problemB', function () {
-		
+
 		xit('logs the second and third stanzas in any order', function (done) {
 			exercise.problemB();
 			setTimeout(function () {
@@ -72,7 +73,7 @@ describe('exercise one (involving poem one)', function () {
 	});
 
 	describe('problemC', function () {
-		
+
 		xit('logs the second THEN the third stanza', function (done) {
 			exercise.problemC();
 			setTimeout(function () {
@@ -87,7 +88,7 @@ describe('exercise one (involving poem one)', function () {
 	});
 
 	describe('problemD', function () {
-		
+
 		xit('logs the fourth stanza or an error if it occurs', function (done) {
 			exercise.problemD();
 			setTimeout(function () {
@@ -102,7 +103,7 @@ describe('exercise one (involving poem one)', function () {
 	});
 
 	describe('problemE', function () {
-		
+
 		xit('logs the third THEN the fourth stanza; if an error occurs only logs the error and does not continue reading (if there is a file still left to read)', function (done) {
 			exercise.problemE();
 			setTimeout(function () {
@@ -145,7 +146,7 @@ describe('exercise one (involving poem one)', function () {
 			}
 			console.log.calls = [];
 		});
-		
+
 		xit('logs the third THEN the fourth stanza; if an error occrus only logs the error and does not continue reading (if there is a file still left to read); always finishes by logging some done message', function (done) {
 			exercise.problemF();
 			setTimeout(function () {

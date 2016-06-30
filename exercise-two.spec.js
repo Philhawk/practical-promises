@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var chai = require('chai');
 var expect = chai.expect;
 chai.use(require('chai-spies'));
@@ -10,13 +11,13 @@ var red = chai.spy.on(utils, 'red');
 
 var fs = require('fs');
 var exercise = require('./exercise-two');
-var dirpath = __dirname + '/poem-two/';
+var dirpath = path.join(__dirname, 'poem-two');
 var stanzas = fs.readdirSync(dirpath)
 .filter(function (filename) {
 	return filename[0] !== '.'
 })
 .map(function (filename) {
-	return fs.readFileSync(dirpath + filename).toString();
+	return fs.readFileSync(path.join(dirpath, filename)).toString();
 });
 
 describe('exercise two (involving poem two)', function () {
@@ -70,7 +71,7 @@ describe('exercise two (involving poem two)', function () {
 		});
 
 	});
-	
+
 	describe('problemB', function () {
 
 		xit('ignoring errors, logs all stanzas in any order, and a done message when all are complete', function (done) {
@@ -89,7 +90,7 @@ describe('exercise two (involving poem two)', function () {
 		});
 
 	});
-	
+
 	describe('problemC', function () {
 
 		xit('ignoring errors, logs all stanzas in the correct order, and a done message when all are complete', function (done) {
@@ -109,7 +110,7 @@ describe('exercise two (involving poem two)', function () {
 		});
 
 	});
-	
+
 	describe('problemD', function () {
 
 		xit('logs all stanzas in the correct order; if an error occurs does not read the next file and instead logs the error; always logs done at the end', function (done) {
