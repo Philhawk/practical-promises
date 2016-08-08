@@ -27,9 +27,9 @@ describe('exercise two (involving poem two)', function () {
 		magenta.reset();
 	});
 
-	var greenCalls, redCalls;
+	var blueCalls, redCalls;
 	beforeEach(function () {
-		greenCalls = blue.__spy.calls;
+		blueCalls = blue.__spy.calls;
 		redCalls = magenta.__spy.calls;
 	});
 
@@ -39,7 +39,7 @@ describe('exercise two (involving poem two)', function () {
 			var args = [].slice.call(arguments);
 			console.log.calls.push({
 				args: args,
-				priorNumGreenCalls: blue.__spy.calls.length,
+				priorNumBlueCalls: blue.__spy.calls.length,
 				priorNumRedCalls: magenta.__spy.calls.length
 			});
 			return originalLog.apply(console, arguments);
@@ -65,7 +65,7 @@ describe('exercise two (involving poem two)', function () {
 				var loggedDoneCalls = getLoggedDoneCalls();
 				expect(loggedDoneCalls).to.have.length(1);
 				var loggedDoneCall = loggedDoneCalls[0];
-				expect(loggedDoneCall.priorNumGreenCalls).to.equal(2);
+				expect(loggedDoneCall.priorNumBlueCalls).to.equal(2);
 				done();
 			}, 500);
 		});
@@ -84,7 +84,7 @@ describe('exercise two (involving poem two)', function () {
 				var loggedDoneCalls = getLoggedDoneCalls();
 				expect(loggedDoneCalls).to.have.length(1);
 				var loggedDoneCall = loggedDoneCalls[0];
-				expect(loggedDoneCall.priorNumGreenCalls).to.equal(stanzas.length);
+				expect(loggedDoneCall.priorNumBlueCalls).to.equal(stanzas.length);
 				done();
 			}, 2000);
 		});
@@ -98,13 +98,13 @@ describe('exercise two (involving poem two)', function () {
 			exercise.problemC();
 			setTimeout(function () {
 				stanzas.forEach(function (stanza, index) {
-					var callArgs = greenCalls[index];
+					var callArgs = blueCalls[index];
 					expect(callArgs[0]).to.equal(stanza);
 				});
 				var loggedDoneCalls = getLoggedDoneCalls();
 				expect(loggedDoneCalls).to.have.length(1);
 				var loggedDoneCall = loggedDoneCalls[0];
-				expect(loggedDoneCall.priorNumGreenCalls).to.equal(8);
+				expect(loggedDoneCall.priorNumBlueCalls).to.equal(8);
 				done();
 			}, 2000);
 		});
@@ -117,19 +117,19 @@ describe('exercise two (involving poem two)', function () {
 			this.timeout(3000);
 			exercise.problemD();
 			setTimeout(function () {
-				greenCalls.forEach(function (callArgs, index) {
+				blueCalls.forEach(function (callArgs, index) {
 					expect(callArgs[0]).to.equal(stanzas[index]);
 				});
 				if (redCalls.length) {
 					expect(redCalls.length).to.equal(1);
 					expect(redCalls[0][0]).to.be.instanceof(Error);
-					expect(greenCalls.length).to.be.below(8);
+					expect(blueCalls.length).to.be.below(8);
 				}
 				var loggedDoneCalls = getLoggedDoneCalls();
 				expect(loggedDoneCalls).to.have.length(1);
 				var loggedDoneCall = loggedDoneCalls[0];
-				expect(loggedDoneCall.priorNumGreenCalls).to.equal(greenCalls.length);
-				if (greenCalls.length !== stanzas.length) {
+				expect(loggedDoneCall.priorNumBlueCalls).to.equal(blueCalls.length);
+				if (blueCalls.length !== stanzas.length) {
 					expect(loggedDoneCall.priorNumRedCalls).to.equal(1);
 				}
 				done();

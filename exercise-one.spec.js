@@ -139,8 +139,8 @@ describe('exercise one (involving poem one)', function () {
 				var args = [].slice.call(arguments);
 				console.log.calls.push({
 					args: args,
-					priorNumGreenCalls: blue.__spy.calls.length,
-					priorNumRedCalls: magenta.__spy.calls.length
+					priorNumBlueCalls: blue.__spy.calls.length,
+					priorNumMagentaCalls: magenta.__spy.calls.length
 				});
 				return originalLog.apply(console, arguments);
 			}
@@ -164,19 +164,19 @@ describe('exercise one (involving poem one)', function () {
 					expect(blueCalls[0][0]).to.equal(stanzas[2]);
 					expect(blueCalls[1][0]).to.equal(stanzas[3]);
 					expect(magentaCalls).to.be.empty;
-					expect(loggedDoneCall.priorNumGreenCalls).to.equal(2);
-					expect(loggedDoneCall.priorNumRedCalls).to.equal(0);
+					expect(loggedDoneCall.priorNumBlueCalls).to.equal(2);
+					expect(loggedDoneCall.priorNumMagentaCalls).to.equal(0);
 				} else if (onlyFirstSucceeded) {
 					expect(blueCalls[0][0]).to.equal(stanzas[2]);
 					expect(magentaCalls).to.have.length(1);
 					expect(magentaCalls[0][0]).to.be.instanceof(Error);
-					expect(loggedDoneCall.priorNumGreenCalls).to.equal(1);
-					expect(loggedDoneCall.priorNumRedCalls).to.equal(1);
+					expect(loggedDoneCall.priorNumBlueCalls).to.equal(1);
+					expect(loggedDoneCall.priorNumMagentaCalls).to.equal(1);
 				} else if (firstFailed) {
 					expect(magentaCalls).to.have.length(1);
 					expect(magentaCalls[0][0]).to.be.instanceof(Error);
-					expect(loggedDoneCall.priorNumGreenCalls).to.equal(0);
-					expect(loggedDoneCall.priorNumRedCalls).to.equal(1);
+					expect(loggedDoneCall.priorNumBlueCalls).to.equal(0);
+					expect(loggedDoneCall.priorNumMagentaCalls).to.equal(1);
 				} else {
 					throw Error('Cannot determine how many file reads succeeded or failed');
 				}
