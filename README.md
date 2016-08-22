@@ -13,4 +13,4 @@ Once you think you've figured out a problem, you can confirm by changing the spe
 Other tips for success:
 * Because asynchronous code is non-deterministic (i.e. the results cannot be determined ahead of time), make sure to test the output to your solutions by running them multiple times, to see the output possibilities.
 * Additionally, make sure to comment out the vanilla callback solutions before you test your promise-y versions; otherwise, the vanilla callback solutions will pass the tests for you!
-* And lastly, take a little bit of time to read through the first few lines of both exercise files; in particular, take note of `promisifiedReadFile` as well as the `blue` and `magenta` functions; you will definitely want to use the first function in your solution, but see if you can also incorporate the latter two.
+* And lastly, take a little bit of time to read through the first few lines of both exercise files; in particular, take note of `promisifiedReadFile` as well as the `blue` and `magenta` functions. You will definitely want to use the first function in your solution, but see if you can also incorporate the latter two.
