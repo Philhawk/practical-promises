@@ -26,68 +26,47 @@ args.forEach(function(arg){
 });
 
 function problemA () {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   *
-   * A. log poem one stanza one (ignore errors)
-   *
-   */
 
-  // callback version
-  readFile('poem-one/stanza-01.txt', function (err, stanza) {
-    console.log('-- A. callback version --');
-    blue(stanza);
-  });
+   promisifiedReadFile('poem-one/stanza-01.txt')
+      .then(function(text){
+        blue(text);
+      })
+      .catch(function(err){
+         console.log(err)
+      })
 
-  // promise version
-  // ???
-
-}
+   }
 
 function problemB () {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   *
-   * B. log poem one stanza two and three, in any order
-   *    (ignore errors)
-   *
-   */
+   var promise1 = promisifiedReadFile('poem-one/stanza-02.txt');
+   var promise2 = promisifiedReadFile('poem-one/stanza-03.txt');
 
-  // callback version
-  readFile('poem-one/stanza-02.txt', function (err, stanza2) {
-    console.log('-- B. callback version (stanza two) --');
-    blue(stanza2);
-  });
-  readFile('poem-one/stanza-03.txt', function (err, stanza3) {
-    console.log('-- B. callback version (stanza three) --');
-    blue(stanza3);
-  });
-
-  // promise version
-  // ???
+  promise2
+   .then(function(stanza3){
+     blue(stanza3);
+     return promise1;
+   })
+   .then(function(stanza2){
+     blue(stanza2);
+   })
+   .catch( console.error )
 
 }
 
 function problemC () {
-  /* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-   *
-   * C. read & log poem one stanza two and *then* read & log stanza three
-   *    log 'done' when both are done
-   *    (ignore errors)
-   *
-   */
 
-  // callback version
-  readFile('poem-one/stanza-02.txt', function (err, stanza2) {
-    console.log('-- C. callback version (stanza two) --');
+  var promise1 = promisifiedReadFile('poem-one/stanza-02.txt');
+  var promise2 = promisifiedReadFile('poem-one/stanza-03.txt');
+
+  promise1
+  .then(function(stanza2){
     blue(stanza2);
-    readFile('poem-one/stanza-03.txt', function (err, stanza3) {
-      console.log('-- C. callback version (stanza three) --');
-      blue(stanza3);
-      console.log('-- C. callback version done --');
-    });
-  });
-
-  // promise version (hint: don't need to nest `then` calls)
-  // ???
+    return promise2;
+  })
+  .then(function(stanza3){
+    blue(stanza3);
+  })
+  .catch( console.error )
 
 }
 
@@ -97,13 +76,19 @@ function problemD () {
    * D. log poem one stanza four or an error if it occurs
    *
    */
-
+   promisifiedReadFile('poem-one/stanza-04.txt')
+      .then(function(text){
+        blue(text);
+      })
+      .catch(function(err){
+         magenta(err);
+      })
   // callback version
-  readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
-    console.log('-- D. callback version (stanza four) --');
-    if (err) magenta(err);
-    else blue(stanza4);
-  });
+  // readFile('poem-one/wrong-file-name.txt', function (err, stanza4) {
+  //   console.log('-- D. callback version (stanza four) --');
+  //   if (err) magenta(err);
+  //   else blue(stanza4);
+  // });
 
   // promise version
   // ???
